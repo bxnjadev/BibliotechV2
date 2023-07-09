@@ -2,9 +2,9 @@ package cl.ucn.disc.pa.bibliotech.book;
 
 public interface Book {
 
-    String getCode();
-
     String getISBN();
+
+    String getAuthor();
 
     String getName();
 

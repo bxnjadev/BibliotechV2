@@ -4,7 +4,7 @@ import cl.ucn.disc.pa.bibliotech.user.UserAccessRequest;
 
 public interface AuthService {
 
-    void login(UserAccessRequest userAccessRequest);
+    boolean login(UserAccessRequest userAccessRequest);
 
     void logout();
 
