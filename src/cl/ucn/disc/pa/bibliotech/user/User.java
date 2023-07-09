@@ -1,5 +1,7 @@
 package cl.ucn.disc.pa.bibliotech.user;
 
+import java.util.List;
+
 public interface User {
 
     String getName();
@@ -9,7 +11,5 @@ public interface User {
     String getLastName();
 
     String getPassword();
-
-
 
 }
