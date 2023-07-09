@@ -16,22 +16,22 @@ public class DefaultUser implements User {
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public String getRut() {
-        return null;
+        return rut;
     }
 
     @Override
     public String getLastName() {
-        return null;
+        return lastName;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
 }

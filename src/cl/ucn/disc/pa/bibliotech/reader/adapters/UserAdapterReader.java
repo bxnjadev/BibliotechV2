@@ -1,6 +1,7 @@
 package cl.ucn.disc.pa.bibliotech.reader.adapters;
 
 import cl.ucn.disc.pa.bibliotech.reader.AdapterReader;
+import cl.ucn.disc.pa.bibliotech.user.DefaultUser;
 import cl.ucn.disc.pa.bibliotech.user.User;
 
 public class UserAdapterReader implements AdapterReader<User> {
@@ -17,7 +18,14 @@ public class UserAdapterReader implements AdapterReader<User> {
 
         String[] fields = value.split(CHARACTER_SEPARATOR);
 
-        return;
+        String rut = fields[0];
+        String name = fields[1];
+        String lastName = fields[2];
+        String password = fields[3];
+
+        return new DefaultUser(
+            name, rut, lastName, password
+        );
     }
 
 }
