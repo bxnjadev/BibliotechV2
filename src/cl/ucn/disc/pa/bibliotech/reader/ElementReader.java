@@ -5,8 +5,8 @@ import java.io.IOException;
 public interface ElementReader<T> extends AutoCloseable {
 
     /**
-     * Create a new instance Pokemon based a input
-     * @return
+     * Create a new instance the elemtn reader
+     * @return the new instance
      */
 
     T read();

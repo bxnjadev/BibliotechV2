@@ -9,15 +9,18 @@ import cl.ucn.disc.pa.bibliotech.gui.menu.MainMenu;
 import cl.ucn.disc.pa.bibliotech.gui.search.book.SearchBook;
 import cl.ucn.disc.pa.bibliotech.helper.ReaderHelper;
 import cl.ucn.disc.pa.bibliotech.reader.AdapterReader;
-import cl.ucn.disc.pa.bibliotech.reader.DefaultElementSaver;
 import cl.ucn.disc.pa.bibliotech.reader.ElementReader;
-import cl.ucn.disc.pa.bibliotech.reader.ElementSaver;
 import cl.ucn.disc.pa.bibliotech.reader.adapters.BookAdapterReader;
 import cl.ucn.disc.pa.bibliotech.reader.adapters.BorrowedBookAdapterReader;
 import cl.ucn.disc.pa.bibliotech.reader.adapters.UserAdapterReader;
 import cl.ucn.disc.pa.bibliotech.user.User;
 
 import java.io.IOException;
+
+/**
+ * Rut: 21544970K
+ * Name: Benjamín Miranda O.
+ */
 
 public class Main {
 
