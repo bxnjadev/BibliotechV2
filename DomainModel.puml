@@ -1,0 +1,24 @@
+@startuml
+!pragma layout smetana
+skin rose
+
+entity Seller {
+    Rut
+    Name
+    Last Name
+    Password
+}
+
+entity Book {
+    Isbn
+    Author
+    Name
+    Category
+    Pages
+    Stock
+}
+
+Seller "1" -- "1.*" Book : Interact
+
+
+@enduml

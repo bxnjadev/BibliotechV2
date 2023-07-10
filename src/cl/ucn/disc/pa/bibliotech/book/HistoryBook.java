@@ -6,7 +6,7 @@ import java.util.List;
 
 public class HistoryBook {
 
-    private List<BorrowedBook> history;
+    private final List<BorrowedBook> history;
 
     public HistoryBook(List<BorrowedBook> history) {
         this.history = history;
@@ -18,6 +18,10 @@ public class HistoryBook {
 
     public void lendBook(User user, Book book) {
 
+    }
+
+    public List<BorrowedBook> getHistory() {
+        return history;
     }
 
     public static HistoryBook empty() {

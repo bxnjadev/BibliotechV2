@@ -12,6 +12,8 @@ public class DefaultUser implements User {
         this.rut = rut;
         this.lastName = lastName;
         this.password = password;
+
+        System.out.println("Creating user name:  " + name);
     }
 
     @Override

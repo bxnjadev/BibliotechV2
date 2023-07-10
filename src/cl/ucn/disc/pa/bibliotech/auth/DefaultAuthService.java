@@ -4,7 +4,7 @@ import cl.ucn.disc.pa.bibliotech.user.User;
 import cl.ucn.disc.pa.bibliotech.user.UserAccessRequest;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Locale;
 
 public class DefaultAuthService implements AuthService {
 
@@ -16,19 +16,21 @@ public class DefaultAuthService implements AuthService {
     }
 
     @Override
-    public void login(UserAccessRequest userAccessRequest) {
+    public boolean login(UserAccessRequest userAccessRequest) {
 
-        Optional<User> userOptional = findUserByName
+        User userSearched = findUserByName
                 (userAccessRequest.getName());
 
-        if (!userOptional.isPresent()) {
-            //Warn is not present
-            return;
+        if (userSearched == null) {
+            return false;
         }
 
-        User user = userOptional.get();
-        setUserLogged(user);
+        if (!userSearched.getPassword().equals(userAccessRequest.getPassword())) {
+            return false;
+        }
 
+        setUserLogged(userSearched);
+        return true;
     }
 
     @Override
@@ -40,7 +42,7 @@ public class DefaultAuthService implements AuthService {
         return userLogged;
     }
 
-    private void setUserLogged(User user){
+    private void setUserLogged(User user) {
         userLogged = user;
     }
 
@@ -49,12 +51,19 @@ public class DefaultAuthService implements AuthService {
         return userLogged != null;
     }
 
-    private Optional<User> findUserByName(String name) {
-        return users.stream().filter(user -> {
-                    String nameUser = user.getName();
-                    return nameUser.equals(name);
-                }).
-                findFirst();
+    private User findUserByName(String name) {
+        name = name.toLowerCase(Locale.ROOT);
+
+        for (User user : users) {
+            String userName = user.getName();
+            userName = userName.toLowerCase(Locale.ROOT);
+
+            if (userName.equals(name)) {
+                return user;
+            }
+        }
+
+        return null;
     }
 
 }

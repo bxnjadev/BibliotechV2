@@ -20,6 +20,8 @@ public class DefaultBook implements Book {
         this.category  =category;
         this.pages = pages;
         this.stock = stock;
+
+        System.out.println("Creating book: " + isbn);
     }
 
     @Override

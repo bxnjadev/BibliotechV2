@@ -51,7 +51,7 @@ public class DefaultElementReader<T> implements ElementReader<T> {
 
     @Override
     public boolean hasNext() {
-        return hasNext;
+        return in.hasNextLine();
     }
 
     @Override

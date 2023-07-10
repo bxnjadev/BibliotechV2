@@ -1,0 +1,139 @@
+@startuml
+!pragma layout smetana
+skin rose
+
+package cl.ucn.disc.pa.bibliotech {
+    package auth {
+        interface AuthService {
+            + login(userAccessRequest : UserAccessRequest) : void
+            + logout() : void
+            + isLoggedIn() : void
+        }
+
+        class DefaultAuthService {
+            + users : List<User>
+
+            + DefaultAuthService(users : List<User>)
+        }
+
+        enum LoginAuthState {
+        }
+
+    }
+
+    package book {
+
+        interface Book {
+            + getISBN() : String
+            + getAuthor() : String
+            + getName() : String
+            + getCategory() : String
+            + getPages() : int
+            + getStock() : int
+        }
+
+        interface BookService {
+            + searchByIsbn(isbn : String) : Book
+            + addBook(book : Book) : boolean
+            + getBooks() : List<Book>
+            + lend(isbn : String, user : User) : boolean
+            + rent(isbn : String, user : User) : boolean
+            + returnBook(isbn : String, user : User) : boolean
+        }
+
+        class DefaultBook {
+            - isbn : String
+            - author : String
+            - name : String
+            - category : String
+            - pages : int
+            - stock : int
+
+            + DefaultBook(isbn : String, author : String, name : String,
+            category : String, pages : int, stock : int)
+        }
+
+        class DefaultBookService {
+            - books : List<Book>
+
+            + DefaultBookService(List<Book> books)
+
+        }
+
+        class HistoryBook {
+            - history : List<BorrowedBook>
+
+            + HistoryBook(history : List<BorrowedBook>)
+
+            + rentBook(user : User, book : Book) : void
+            + lendBook(user : User, book : Book) : void
+            + getHistory() : List<BorrowedBook>
+
+        }
+
+        enum TransactionType {
+        }
+
+    }
+
+    package reader {
+
+        interface AdapterReader<T> {
+
+            write(object : T) : String
+            read(value : String) : T
+
+        }
+
+        interface ElementReader<T> {
+            read() : T
+
+            hasNext() : boolean
+
+        }
+
+        interface ElementSaver<T> {
+
+          save(collection : Collection<T>) : void
+
+        }
+
+        package {
+
+            class BookAdapterReader {
+            }
+
+            class BorrowedBookAdapterReader {
+            }
+
+            class UserAdapterReader {
+            }
+
+        }
+
+
+
+    }
+
+    package rented {
+        interface RentedBook {
+
+            getRutSeller() : String
+            getName() : String
+            getLastName() : String
+            getIsbn() : String
+
+        }
+    }
+
+    DefaultAuthService --|> AuthService
+    DefaultBookService --|> BookService
+    DefaultBook --|> Book
+    AuthService --* UserAdapterReader
+    BookService --* Book
+    BookService --* BookAdapterReader
+    HistoryBook --* BorrowedBookAdapterReader
+
+}
+
+@enduml

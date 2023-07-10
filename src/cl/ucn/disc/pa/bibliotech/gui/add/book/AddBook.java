@@ -3,12 +3,12 @@ package cl.ucn.disc.pa.bibliotech.gui.add.book;
 import cl.ucn.disc.pa.bibliotech.book.Book;
 import cl.ucn.disc.pa.bibliotech.book.BookService;
 import cl.ucn.disc.pa.bibliotech.book.DefaultBook;
+import cl.ucn.disc.pa.bibliotech.gui.menu.MainMenu;
 import cl.ucn.disc.pa.bibliotech.helper.GuiHelper;
-import ucn.In;
 
 import javax.swing.*;
 
-public class AddBook {
+public class AddBook extends JFrame {
 
     private JTextField nameField;
     private JTextField authorField;
@@ -18,11 +18,14 @@ public class AddBook {
     private JTextField stockField;
     private JButton buttonAdd;
     private JButton buttonPrevious;
+    private JPanel addBookMenu;
 
     private final BookService bookService;
+    private final MainMenu mainMenu;
 
-    public AddBook(BookService bookService) {
+    public AddBook(BookService bookService, MainMenu mainMenu) {
         this.bookService = bookService;
+        this.mainMenu = mainMenu;
 
         loadButtons();
     }
@@ -37,6 +40,16 @@ public class AddBook {
             onBack();
         });
 
+    }
+
+    public void open() {
+        setContentPane(addBookMenu);
+
+        setTitle("Add Book");
+        setSize(300,300);
+
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
     private void onAddBook() {
@@ -55,11 +68,11 @@ public class AddBook {
         bookService.add(book);
 
         GuiHelper.showActionPerformed("Libro agregado!");
-
     }
 
     private void onBack() {
-
+        setVisible(false);
+        mainMenu.open();
     }
 
 }

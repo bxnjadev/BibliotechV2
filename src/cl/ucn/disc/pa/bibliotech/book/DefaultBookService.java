@@ -9,21 +9,29 @@ public class DefaultBookService implements BookService {
 
     private final List<Book> books;
 
-    public DefaultBookService() {
-        books = new ArrayList<>();
+    public DefaultBookService(List<Book> books) {
+        this.books = books;
+        System.out.println(books.size());
     }
 
     @Override
     public Book searchByIsbn(String isbn) {
-        return books.stream().filter(book -> {
-            String isbnBook = book.getISBN();
-            return isbn.equals(isbnBook);
-        }).findFirst().orElse(null);
+        for (Book book : books) {
+            if (book.getISBN().equals(isbn)) {
+                return book;
+            }
+        }
+        return null;
     }
 
     @Override
     public boolean add(Book book) {
         return books.add(book);
+    }
+
+    @Override
+    public List<Book> getBooks() {
+        return books;
     }
 
     @Override
